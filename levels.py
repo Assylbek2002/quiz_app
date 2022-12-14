@@ -7,12 +7,14 @@ from mark import *
 
 
 def level(quiz_level):
+    # Функция для считывания очков
     def calc():
         global score
         if var.get() in (easy_answer or medium_answer or hard_answer):
             score += 1
         display()
 
+    # Функция которая выводит вопрос в соответствии с выбранным уровнем
     def display():
         if len(indexes) == 0:
             l.destroy()
@@ -31,7 +33,7 @@ def level(quiz_level):
             for j in range(0, len(button_index)):
                 if quiz_level == "easy":
                     options[j].configure(text=easyQ[element_choice][button_index[j]],
-                                        value=easyQ[element_choice][button_index[j]])
+                                         value=easyQ[element_choice][button_index[j]])
                 elif quiz_level == "medium":
                     options[j].configure(text=mediumQ[element_choice][button_index[j]],
                                          value=mediumQ[element_choice][button_index[j]])
@@ -44,6 +46,7 @@ def level(quiz_level):
             if y == -1:
                 display()
 
+    # Функционал таймера
     def count_down():
         check = 0
         for k in range(10, 0, -1):
@@ -81,12 +84,12 @@ def level(quiz_level):
     quiz_station.place(relx=0.3, rely=0.02)
 
     if quiz_level == "easy":
-        question = Label(level_frame, text=easyQ[choice][0], font=('yu gothic ui', 13, 'bold'), bg="#4257b2", fg="white")
+        question = Label(level_frame, text=easyQ[choice][0], font=('yu gothic ui', 11, 'bold'), bg="#4257b2", fg="white")
     elif quiz_level == "medium":
-        question = Label(level_frame, text=mediumQ[choice][0], font=('yu gothic ui', 13, 'bold'), bg="#4257b2",
+        question = Label(level_frame, text=mediumQ[choice][0], font=('yu gothic ui', 11, 'bold'), bg="#4257b2",
                          fg="white")
     else:
-        question = Label(level_frame, text=hardQ[choice][0], font=('yu gothic ui', 13, 'bold'), bg="#4257b2",
+        question = Label(level_frame, text=hardQ[choice][0], font=('yu gothic ui', 11, 'bold'), bg="#4257b2",
                          fg="white")
     question.place(relx=0.5, rely=0.25, anchor=CENTER)
 
@@ -95,6 +98,8 @@ def level(quiz_level):
     button_color = ["#fffc33", "red", "orange", "purple"]
     button_coordinate = [0.42, 0.52, 0.62, 0.72]
     options = []
+
+    # Функционал вариантов ответа
     for i in range(0, len(button_index)):
         if quiz_level == "easy":
             option = Radiobutton(level_frame, text=easyQ[choice][button_index[i]], bg="#4257b2",

@@ -1,12 +1,13 @@
-import sqlite3
-from tkinter import *
+import sqlite3 # импортируем библиотеку СУБД для работы с базой данных
+import tkinter # импортируем библиотеку Tkinter для создания графического интерфейса
+
 from levels import *
 
-
+# Создания страницы для регистрации
 def signup():
     window.destroy()
     global sign_up
-    sign_up = Tk()
+    sign_up = tkinter.Tk()
     sign_up.title("Sign Up")
     sign_up_canvas = Canvas(sign_up, width=700, height=700, bg="#4257b2")
     sign_up_canvas.pack()
@@ -14,6 +15,7 @@ def signup():
     sign_up_frame = Frame(sign_up_canvas, bg="#4257b2")
     sign_up_frame.place(anchor=CENTER, relheight=0.8, relwidth=0.8, relx=0.5, rely=0.5)
 
+    # поля для базы данных
     full_name = StringVar()
     username = StringVar()
     password = StringVar()
@@ -55,6 +57,8 @@ def signup():
     password_line = Canvas(sign_up_frame, width=300, height=2.0, bg="white", highlightthickness=0)
     password_line.place(relx=0.31, rely=0.64)
 
+    # Если у usera есть уже аккаунт то выполняется данная функция,
+    # она перенаправляет пользователя на страницу login
     def go_to_login():
         conn = sqlite3.connect("quiz_app.db")
         cur = conn.cursor()
@@ -63,6 +67,7 @@ def signup():
         users = cur.fetchall()
         login(users)
 
+    # При нажатии кнопки SignUp user добавляется в базу данных
     def add_user_to_database():
         check_values(full_name, username, password)
         conn = sqlite3.connect('quiz_app.db')
@@ -76,22 +81,26 @@ def signup():
         conn.close()
         login(users)
 
+    # Функционал кнопки SignUp
     sign_up_button = Button(sign_up_frame, text="Sign Up", command=add_user_to_database, bg="white", fg="black")
     sign_up_button.configure(width=15, height=1, activebackground="#33B5E5", relief=FLAT)
     sign_up_button.place(relx=0.4, rely=0.8)
 
+    # Функционал кнопки Already have an Account
     already_have_account_button = Button(sign_up_frame, text='Already have an Account?', font=('yu gothic ui', 10, 'bold'),
                                          fg="white", bg="#4257b2", cursor="hand2", activebackground="#4257b2", bd=0,
                                          command=go_to_login)
     already_have_account_button.place(relx=0.36, rely=0.9)
 
 
+# Создания страницы для авторизации
 def login(users_data):
     sign_up.destroy()
     global log_in
     log_in = Tk()
     log_in.title("Quiz App Login")
 
+    # поля таблицы базы данных
     username = StringVar()
     password = StringVar()
 
@@ -127,6 +136,7 @@ def login(users_data):
     password_line = Canvas(log_in_frame, width=300, height=2.0, bg="white", highlightthickness=0)
     password_line.place(relx=0.31, rely=0.64)
 
+    # Данная функция осуществляет проверку данных пользователя в базе данных
     def check():
         for full_name, name, pas in users_data:
             if name == username.get() and pas == password.get():
@@ -137,11 +147,13 @@ def login(users_data):
                 error = Label(log_in_frame, text="Wrong Username or Password!", fg='black', bg='white')
                 error.place(relx=0.37, rely=0.7)
 
+    # Функционал кнопки Log In
     log = Button(log_in_frame, text='Login', padx=5, pady=5, width=5, command=check, fg="white", bg="black")
     log.configure(width=15, height=1, activebackground="#33B5E5", relief=FLAT)
     log.place(relx=0.4, rely=0.7)
 
 
+# Проверка ввел ли пользователь данные корректно
 def check_values(full_name, username, password):
     if len(full_name.get()) == 0 and len(username.get()) == 0 and len(password.get()) == 0:
         error = Label(text="You haven't enter any field...Please Enter all the fields", fg='black', bg='white')
@@ -163,7 +175,7 @@ def check_values(full_name, username, password):
         error = Label(text="Password can't be empty", fg='black', bg='white')
         error.place(relx=0.37, rely=0.7)
 
-
+# После того как пользователь прошел проверку выводится данная страница
 def main_page(username):
     log_in.destroy()
     global menu
@@ -200,6 +212,7 @@ def main_page(username):
                              value=i + 1, variable=var, fg="white", selectcolor=text_color[i])
         button.place(relx=0.05, rely=text_place[i])
 
+    # Перенаправляет пользователя в зависимости от выбранного уровня
     def navigate():
         x = var.get()
         print(x)
@@ -224,7 +237,7 @@ def main_page(username):
 def exit_quiz():
     window.destroy()
 
-
+# Начальная страница
 def start():
     global window
     window = Tk()
