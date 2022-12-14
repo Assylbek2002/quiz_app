@@ -1,39 +1,39 @@
 easyQ = [
     [
-        "What will be the output of the following Python code? \nl=[1, 0, 2, 0, 'hello', '', []] \nlist(filter(bool, nl))",
-        "[1, 0, 2, ‘hello’, '', []]",
-        "Error",
-        "[1, 2, ‘hello’]",
-        "[1, 0, 2, 0, ‘hello’, '', []]"
+        "Кабинет Эльнуры тичер?",
+        "G307",
+        "F203",
+        "Н702",
+        "G306"
     ],
     [
-        "What will be the output of the following Python expression if the value of x is 34? \nprint(“%f”%x)",
-        "34.00",
-        "34.000000",
-        "34.0000",
-        "34.00000000"
+        "Куратор какой специальности Эльнура тичер?",
+        "Менеджмент 2 курс",
+        "Финансы 4 курс",
+        "Экономика 3 курс",
+        "Маркетинг 4 курс "
 
     ],
     [
-        "What will be the value of X in the following Python expression? \nX = 2+9*((3*12)-8)/10",
-        "30.8",
-        "27.2",
-        "28.4",
-        "30.0"
+        "Где Эльнура тичер закончила бакалавр?",
+        "КБТУ",
+        "Кимеп",
+        "Сулейман Демирель Университет",
+        "Она из Франции"
     ],
     [
-        "Which of these in not a core data type?",
-        "Tuples",
-        "Dictionary",
-        "Lists",
-        "Class"
+        "Кто самая красивая тичер в универе СДУ?",
+        "Никто",
+        "Гульнура",
+        "Мисс Эльнура тичер",
+        "Амина"
     ],
     [
-        "Which of the following represents the bitwise XOR operator?",
-        "&",
-        "!",
-        "^",
-        "|"
+        "Какой ник в телеграмме у Эльнуры тичер?",
+        "elnura.n",
+        "enmenmenmenm",
+        "eeelllnnnuuurrraaa",
+        "ennenenmenmen"
     ]
 ]
 easy_answer = [
