@@ -10,7 +10,7 @@ def level(quiz_level):
     # Функция для считывания очков
     def calc():
         global score
-        if var.get() in (easy_answer or medium_answer or hard_answer):
+        if var.get() in easy_answer or medium_answer or hard_answer:
             score += 1
         display()
 
